@@ -4,6 +4,8 @@ import Link from 'next/link';
 import './globals.css';
 import Image from 'next/image';
 
+//CORREGIR COSAS HARDCODEADAS COMO LOS ARTICLES, Y MODULARIZAR TODO EN DISTINTOS COMPONENTES
+// PARA QUE SEA MÁS FÁCIL DE LEER Y DE MANTENER. LLAMARLOS EN ESTE LAYOUT.
 
 export const metadata: Metadata = {
   title: 'Dream Tree',
@@ -74,12 +76,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
           </div>
         </section>
-        <section>
-          <h1 className="text-green-500 text-2xl font-bold p-22">¿Dónde plantamos nuestros árboles?</h1>
-          <article>
-            <Image src="/public/personas-1.jpeg" alt="personas plantando" width={400} height={200} />
-            <div>
-              <div>
+        <section className='h-screen p-10 '>
+          <h1 className="text-moss-green text-center text-3xl font-bold pb-10">¿Dónde plantamos nuestros árboles?</h1>
+          <div className='flex'>
+          <article className='max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden'>
+            <Image src="/personas-1.jpeg" alt="personas plantando" width={450} height={200} className='object-cover'/>
+            <div className='p-8 bg-moss-green'>
+              <div className=" flex justify-between uppercase tracking-wide text-sm text-white font-semibold">
                 <div>
                   30 de octubre de 2024
                 </div>
@@ -87,18 +90,51 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   Montevideo, Uruguay
                 </div>
               </div>
-              <p>
+              <p className="mt-2 text-white pt-5">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur eius veritatis animi, alias labore ullam, ex dolorem odio eos aperiam cupiditate expedita ipsam. Doloremque, quos maiores optio temporibus asperiores dicta.
               </p>
             </div>
           </article>
+          <article className='max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden'>
+            <Image src="/personas-2.jpg" alt="personas plantando" width={450} height={200} className='object-cover'/>
+            <div className='p-8 bg-moss-green'>
+              <div className=" flex justify-between uppercase tracking-wide text-sm text-white font-semibold">
+                <div>
+                  30 de octubre de 2024
+                </div>
+                <div>
+                  Montevideo, Uruguay
+                </div>
+              </div>
+              <p className="mt-2 text-white pt-5">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur eius veritatis animi, alias labore ullam, ex dolorem odio eos aperiam cupiditate expedita ipsam. Doloremque, quos maiores optio temporibus asperiores dicta.
+              </p>
+            </div>
+          </article>
+          <article className='max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden'>
+            <Image src="/personas-3.png" alt="personas plantando" width={450} height={200} className='object-cover'/>
+            <div className='p-8 bg-moss-green'>
+              <div className=" flex justify-between uppercase tracking-wide text-sm text-white font-semibold">
+                <div>
+                  30 de octubre de 2024
+                </div>
+                <div>
+                  Montevideo, Uruguay
+                </div>
+              </div>
+              <p className="mt-2 text-white pt-5">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur eius veritatis animi, alias labore ullam, ex dolorem odio eos aperiam cupiditate expedita ipsam. Doloremque, quos maiores optio temporibus asperiores dicta.
+              </p>
+            </div>
+          </article>
+          </div>
         </section>
-        <section>
-          <h1>Preguntas Frecuentes</h1>
+        <section id='FAQ' className='h-screen'>
+          <h1 className='text-moss-green text-4xl text-center font-bold'>Preguntas Frecuentes</h1>
           <div> ACORDIÓN </div>
         </section>
-        <footer className="bg-green-700 p-4">
-          Fundación Dream Team
+        <footer className="bg-moss-green p-8 text-center">
+        © Fundación Dream Team
         </footer>
       </body>
     </html>
