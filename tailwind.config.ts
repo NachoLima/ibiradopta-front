@@ -1,13 +1,20 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}", // Asegurarse de incluir JSX y TSX
+    './app/**/*.{js,ts,jsx,tsx,mdx}', // Note the addition of the `app` directory.
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   darkMode: 'class', // Soporte para modo oscuro basado en clases
   theme: {
     extend: {
       colors: {
+        "moss-green": "#2d5700",
+        
         primary: {
+           "moss-green": "#2d5700",
           "50": "#ecfdf5",
           "100": "#d1fae5",
           "200": "#a7f3d0",
@@ -19,59 +26,52 @@ module.exports = {
           "800": "#065f46",
           "900": "#064e3b",
           "950": "#022c22",
+          
         },
+
       },
       fontFamily: {
-        body: [
-          'Montserrat',
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'system-ui',
-          'Segoe UI',
-          'Roboto',
-          'Helvetica Neue',
-          'Arial',
-          'Noto Sans',
-          'sans-serif',
-          'Apple Color Emoji',
-          'Segoe UI Emoji',
-          'Segoe UI Symbol',
-          'Noto Color Emoji',
-        ],
-        sans: [
-          'Montserrat',
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'system-ui',
-          'Segoe UI',
-          'Roboto',
-          'Helvetica Neue',
-          'Arial',
-          'Noto Sans',
-          'sans-serif',
-          'Apple Color Emoji',
-          'Segoe UI Emoji',
-          'Segoe UI Symbol',
-          'Noto Color Emoji',
-        ],
+        Righteous: ["Righteous","sans-serif"],
+          Poppins: ["Poppins","sans-serif"],
+        // body: [
+        //   'Montserrat',
+        //   'ui-sans-serif',
+        //   'system-ui',
+        //   '-apple-system',
+        //   'system-ui',
+        //   'Segoe UI',
+        //   'Roboto',
+        //   'Helvetica Neue',
+        //   'Arial',
+        //   'Noto Sans',
+        //   'sans-serif',
+        //   'Apple Color Emoji',
+        //   'Segoe UI Emoji',
+        //   'Segoe UI Symbol',
+        //   'Noto Color Emoji',
+        // ],
+        // sans: [
+        //   'Montserrat',
+        //   'ui-sans-serif',
+        //   'system-ui',
+        //   '-apple-system',
+        //   'system-ui',
+        //   'Segoe UI',
+        //   'Roboto',
+        //   'Helvetica Neue',
+        //   'Arial',
+        //   'Noto Sans',
+        //   'sans-serif',
+        //   'Apple Color Emoji',
+        //   'Segoe UI Emoji',
+        //   'Segoe UI Symbol',
+        //   'Noto Color Emoji',
+        // ],
       },
     },
   },
   plugins: [],
 };
 
-const flowbite = require("flowbite-react/tailwind");
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    // ...
-    flowbite.content(),
-  ],
-  plugins: [
-    // ...
-    flowbite.plugin(),
-  ],
-};
+
