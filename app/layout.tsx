@@ -52,7 +52,7 @@ function Nav({ session }: { session: any }) {
           <Image src="/logo.svg" alt="logo" width={108} height={96} />
           <div className="text-moss-green text-5xl font-Righteous pt-8">IBIRADOPTÁ</div>
         </div>
-        <div className="space-x-10 font-Poppins">
+        <div className="space-x-10 font-Poppins flex">
           <Link href="/" className="text-moss-green px-4 py-2 ml-2 text-2xl hover:text-green-700">Home</Link>
           <Link href="#" className="text-moss-green px-4 py-2 ml-2 text-2xl hover:text-green-700">Explorar</Link>
           {!session ? (
@@ -146,7 +146,7 @@ function PlantingLocations() {
           <div className='p-8 bg-moss-green'>
             <div className=" flex justify-between uppercase tracking-wide text-sm text-white font-semibold">
               <div>
-              1 de noviembre de 2024
+                1 de noviembre de 2024
               </div>
               <div>
                 Montevideo, Uruguay
@@ -182,7 +182,7 @@ function PlantingLocationCard({ img }: { img: string }) {
 function FAQSection() {
   return (
     <section id="FAQ" className="h-screen bg-gray-100 py-10">
-      
+
       <h1 className="text-moss-green text-4xl text-center font-Poppins font-bold pb-8">Preguntas Frecuentes</h1>
       <FAQList />
     </section>
