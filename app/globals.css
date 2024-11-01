@@ -1,41 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-    @font-face {
-        font-family: "Righteous", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-        src: url(/app/fonts/Righteous/Righteous-Regular.ttf);
-    }
-    @font-face {
-   /*poppins regular */
-            font-family: "Poppins", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            src: url(/app/fonts/Poppins/Poppins-Regular.ttf);
-    }
 
-    @font-face {
-        font-family: "Poppins", sans-serif;
-       font-weight: 600;
-            font-style: normal;
-            src: url(/app/fonts/Poppins/Poppins-SemiBold.ttf);
-          }
-    @font-face {
-        font-family: "Poppins", sans-serif;
-        font-weight: 800;
-        font-style: normal;
-        src: url(/app/fonts/Poppins/Poppins-ExtraBold.ttf);
-    }
-    }
 
 
 main div {
-    position: relative; /* Ensure the div is positioned relative for the pseudo-element */
-        height: 587px;
-        
+    position: relative;
+    /* Ensure the div is positioned relative for the pseudo-element */
+    height: 587px;
+
 
 
 }
@@ -52,13 +29,14 @@ main div::before {
     background-size: cover;
     background-position: center;
     filter: brightness(.5);
-    z-index: -1; /* Ensure the pseudo-element is behind the content */
-    
+    z-index: -1;
+    /* Ensure the pseudo-element is behind the content */
+
 }
 
-#About{
+#About {
 
-    height: 100vh;
+
     font-weight: 400;
     line-height: 1.5;
     background-image: url('../public/fondo-hojas.png');
@@ -67,7 +45,8 @@ main div::before {
 }
 
 #FAQ {
-    position: relative; /* Ensure the div is positioned relative for the pseudo-element */
+    position: relative;
+    /* Ensure the div is positioned relative for the pseudo-element */
 }
 
 #FAQ::before {
@@ -83,5 +62,6 @@ main div::before {
     background-position: center;
     background-attachment: scroll;
     opacity: 0.25;
-    z-index: -1; /* Ensure the pseudo-element is behind the content */
+    z-index: -1;
+    /* Ensure the pseudo-element is behind the content */
 }

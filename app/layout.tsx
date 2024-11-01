@@ -3,9 +3,12 @@ import type { Metadata } from 'next'
 import Link from 'next/link';
 import './globals.css';
 import Image from 'next/image';
+import FAQList from './components/faq/FAQList';
 
 //CORREGIR COSAS HARDCODEADAS COMO LOS ARTICLES, Y MODULARIZAR TODO EN DISTINTOS COMPONENTES
 // PARA QUE SEA MÁS FÁCIL DE LEER Y DE MANTENER. LLAMARLOS EN ESTE LAYOUT.
+//MODIFICAR SCROLL DE LOS FONDOS PARA QUE SEA MÁS SUAVE Y NO TAN BRUSCO
+//AGREGAR DETALLES QUE NO HAYA APLICADO DEL FIGMA
 
 export const metadata: Metadata = {
   title: 'Dream Tree',
@@ -22,51 +25,53 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             {/* Logo o nombre del sitio */}
             <div className='flex '>
               <Image src="/logo.svg" alt="logo" width={108} height={96} />
-              <div className="text-moss-green text-5xl font-Righteous">
+              <div className="text-moss-green text-5xl font-Righteous pt-8">
                 IBIRADOPTÁ
               </div>
             </div>
 
             {/* Botones de iniciar sesión y registrarse */}
-            <div>
-              <Link href="#" className=''>
+            <div className='space-x-10 font-Poppins' >
+              <Link href="#" className='text-moss-green px-4 py-2 ml-2 text-2xl hover:text-green-700'>
                 Home
               </Link>
-              <Link href="#" className=''>
+              <Link href="#" className='text-moss-green px-4 py-2 ml-2 text-2xl hover:text-green-700'>
                 Explorar
               </Link>
-              <Link href="/register" className="bg-moss-green text-white px-4 py-2 ml-2 rounded hover:bg-emerald-700">
-                Registrarme
+              <Link href="/register" className="bg-moss-green text-white px-6 py-2 ml-2 text-2xl w-80 h-16 rounded-full hover:bg-green-700">
+                REGISTRARME
               </Link>
-              <Link href="/login" className="bg-moss-green text-white px-4 py-2 rounded hover:bg-green-700">
-                Iniciar sesión
+              <Link href="/login" className="bg-moss-green text-white px-6 py-2 text-2xl w-80 h-16 rounded-full hover:bg-green-700">
+                INICIAR SESIÓN
               </Link>
             </div>
           </div>
         </nav>
 
         {/* Contenido de la página principal */}
-        <main className=" py-10 ">
-          <div className="pl-24 pr-96 flex flex-col space-y-6 pt-28 drop-shadow-2xl">
+        <main className=" py-10 font-Poppins">
+          <div className="pl-24 pr-96 flex flex-col space-y-8 pt-28 drop-shadow-2xl">
             {/* {children} */}
-            <h1 className="text-white text-3xl font-bold p-22 ">
+            <h1 className="text-white text-3xl font-bold  ">
               Plantá un árbol, transformá el futuro
             </h1>
-            <p className=' text-white text-2xl'>
+            <p className=' text-white text-2xl pr-80'>
               Un pequeño gesto puede crear un cambio gigante. Adopta un árbol hoy y forma parte de un movimiento global para restaurar nuestro planeta, limpiar el aire y darle vida a nuevas generaciones. Descubre cómo juntos podemos hacer la diferencia.
             </p>
-            <button className='bg-moss-green text-white text-3xl w-80 h-16 rounded-full'>
+            <button className='bg-moss-green text-white text-3xl w-80 h-16 rounded-full hover:bg-green-700'>
               QUIERO PLANTAR
             </button>
           </div>
         </main>
-        <section id="About" className='flex'>
-          <div className='flex flex-col space-y-6 pl-10 pr-96'>
-            <h1 className="text-moss-green text-3xl font-bold p-22"> Sobre nosotros </h1>
-            <p className='h-20 text-2xl text-moss-green'> En IBIRADOPTÁ, creemos que cada árbol cuenta para un futuro más verde y saludable. Somos un grupo de personas apasionadas por la naturaleza, unidos por la misión de restaurar nuestro planeta, árbol por árbol. Facilitamos a individuos, empresas y comunidades la oportunidad de adoptar y plantar árboles en diversas regiones, promoviendo la biodiversidad, mejorando la calidad del aire y ayudando a combatir el cambio climático. Creemos que proteger la Tierra no es solo una opción, sino una responsabilidad compartida. Al unirnos en esta misión, creamos un impacto positivo que trasciende generaciones. Nuestro compromiso es acompañarte en cada paso, ofreciendo transparencia sobre los proyectos, el seguimiento de cada árbol plantado y el impacto ambiental que juntos estamos generando.
+        <section id="About" className='flex h-screen'>
+          <div className='flex flex-col pl-10 pr-80 pt-10 space-y-20 font-Poppins'>
+            <h1 className="text-moss-green text-3xl font-bold "> Sobre nosotros </h1>
+            <p className=' text-2xl text-moss-green '> En IBIRADOPTÁ, creemos que cada árbol cuenta para un futuro más verde y saludable. Somos un grupo de personas apasionadas por la naturaleza, unidos por la misión de restaurar nuestro planeta, árbol por árbol. Facilitamos a individuos, empresas y comunidades la oportunidad de adoptar y plantar árboles en diversas regiones, promoviendo la biodiversidad, mejorando la calidad del aire y ayudando a combatir el cambio climático. 
+              <br />
+              Creemos que proteger la Tierra no es solo una opción, sino una responsabilidad compartida. Al unirnos en esta misión, creamos un impacto positivo que trasciende generaciones. Nuestro compromiso es acompañarte en cada paso, ofreciendo transparencia sobre los proyectos, el seguimiento de cada árbol plantado y el impacto ambiental que juntos estamos generando.
               <br />
               <br />
-              Sé parte de la diferencia y únete a nuestra misión de dar vida a un planeta más verde.
+              <b>Sé parte de la diferencia y únete a nuestra misión de dar vida a un planeta más verde.</b>
             </p>
           </div>
           <div className='flex flex-col justify-center pr-20 '>
@@ -76,7 +81,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
           </div>
         </section>
-        <section className='h-screen p-10 '>
+        <section className='h-screen p-10 font-Poppins'>
           <h1 className="text-moss-green text-center text-3xl font-bold pb-10">¿Dónde plantamos nuestros árboles?</h1>
           <div className='flex'>
           <article className='max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden'>
@@ -130,10 +135,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
         </section>
         <section id='FAQ' className='h-screen'>
-          <h1 className='text-moss-green text-4xl text-center font-bold'>Preguntas Frecuentes</h1>
-          <div> ACORDIÓN </div>
+          <h1 className='text-moss-green text-4xl text-center font-Poppins font-bold pb-8'>Preguntas Frecuentes</h1>
+          <FAQList />
         </section>
-        <footer className="bg-moss-green p-8 text-center">
+        <footer className="bg-moss-green p-8 text-center font-Poppins">
         © Fundación Dream Team
         </footer>
       </body>
