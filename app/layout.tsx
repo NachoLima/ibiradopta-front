@@ -77,7 +77,7 @@ function HeroSection() {
         <p className="text-white text-2xl">
           Un pequeño gesto puede crear un cambio gigante. Adopta un árbol hoy y forma parte de un movimiento global para restaurar nuestro planeta...
         </p>
-        <button className="bg-moss-green text-white text-3xl w-80 h-16 rounded-full hover:bg-green-700">QUIERO PLANTAR</button>
+        <button className="bg-moss-green text-white text-3xl w-80 h-16 rounded-full outline-dotted outline outline-offset-2 outline-2 hover:bg-green-700">QUIERO PLANTAR</button>
       </div>
     </main>
   );
@@ -191,8 +191,25 @@ function FAQSection() {
 
 function Footer() {
   return (
-    <footer className="bg-moss-green p-8 text-center text-white font-Poppins">
-      © Fundación Dream Team
+    
+    <footer className="flex bg-moss-green p-8 text-center text-white font-Poppins justify-between">
+      <div className="flex flex-col text-left space-y-3 order-1">
+        <Link href="#">Plantá un árbol con nosotros</Link>
+        <Link href="#">Sobre nosotros</Link>
+        <Link href="#">Dónde plantamos nuestros árboles</Link>
+        <Link href="#">Contacto</Link>
+      </div>
+      <div className="flex flex-col space-y-3 text-left align-center order-2">
+        <span>Ibiradoptá</span>
+        <span>Calle 7 esq. Calle 6</span>
+        <span>Montevideo, Uruguay</span>
+        <span>+598 98 666 555</span>
+        <span>info@ibiradopta.org.uy</span>
+      </div>
+      <div className="flex flex-col order-3 space-y-8">
+        <div>LOGOS SOCIAL MEDIA</div>
+        <span>© Fundación Dream Team</span>
+      </div>
     </footer>
   );
 }
