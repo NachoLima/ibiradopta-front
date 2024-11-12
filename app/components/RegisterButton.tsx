@@ -9,11 +9,12 @@ export default function RegisterButton() {
       console.log(+"/n url"+ keycloakRegistrationUrl)
       window.location.href = keycloakRegistrationUrl;
     };
+    
 
     return (
       <button
         onClick={handleRegister}
-        className="bg-moss-green text-white px-4 py-2 rounded hover:bg-green-700"
+        className="bg-moss-green text-white px-6 py-2 ml-2 text-2xl w-60 h-16 rounded-full hover:bg-green-700"
       >
         Registrarme
       </button>
