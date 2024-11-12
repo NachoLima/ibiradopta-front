@@ -2,6 +2,13 @@ import NextAuth, { AuthOptions, TokenSet } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import KeycloakProvider from "next-auth/providers/keycloak";
 
+// interface bodySearchParams {
+//   client_id: String;
+//   client_secret: String;
+//   grant_type: String;
+//   refresh_token: String
+// }
+
 function requestRefreshOfAccessToken(token: JWT) {
   return fetch(`${process.env.AUTH_ISSUER}/protocol/openid-connect/token`, {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -29,7 +36,7 @@ export const authOptions: AuthOptions = {
     maxAge: 60 * 30
   },
   callbacks: {
-    async jwt({ token, account,profile }) {
+    async jwt({ token, account, profile }) {
       if (account) {
         token.idToken = account.id_token
         token.accessToken = account.access_token
