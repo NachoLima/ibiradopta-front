@@ -1,15 +1,11 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
 
-export default function Login() {
-  const { data: session } = useSession();
-
+export default function LoginButton() {
   const handleLogin = () => {
-    if (!session) {
-      signIn("keycloak");
-    } else {
-      console.log("Ya estás logeado");
-    }
+    const keycloakRegistrationUrl = `http://localhost:8080/realms/ibiradopta/`;
+    console.log(+"/n url"+ keycloakRegistrationUrl)
+    window.location.href = keycloakRegistrationUrl;
   };
 
   return (
