@@ -4,8 +4,8 @@ import { signIn } from "next-auth/react";
 import { useEffect } from "react";
 
 export default function RegisterButton() {
-    const handleRegister = () => {
-      const keycloakRegistrationUrl = `http://localhost:8080/realms/ibiradopta/protocol/openid-connect/registrations?client_id=ibiradopta-frontend&response_type=code&scope=openid&redirect_uri=http://localhost:3000`;
+    const handleRegister = () => { //CHANGE HARDCODED LINK TO AN EV
+      const keycloakRegistrationUrl = `http://localhost:8080/realms/ibiradopta/protocol/openid-connect/registrations?client_id=ibiradopta-frontend&response_type=code&scope=openid&redirect_uri=https://ibiradopta-front-qn87qpj2n-ignacio-limas-projects-d1b10230.vercel.app/`;
       console.log(+"/n url"+ keycloakRegistrationUrl)
       window.location.href = keycloakRegistrationUrl;
     };
