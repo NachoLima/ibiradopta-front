@@ -1,32 +1,33 @@
 "use client";
 
+import React, { Suspense } from "react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-// Definimos la interfaz para los proyectos
+// Define the interface for projects
 interface Project {
   id: number;
   name: string;
   description: string;
   imageUrl: string;
   location: string;
-  endDate: string; // Fecha en formato string (ISO 8601: "yyyy-mm-dd")
-  isFinished: number; // 0 o 1
+  endDate: string; // Date in string format (ISO 8601: "yyyy-mm-dd")
+  isFinished: number; // 0 or 1
   price: number;
 }
 
 function ApoyarCard() {
   const { data: session, status } = useSession();
-  const [cantidad, setCantidad] = useState(1); // Cantidad de árboles a adoptar
-  const [project, setProject] = useState<Project | null>(null); // Estado para el proyecto
-  const router = useRouter(); // Inicializa useRouter
-  const searchParams = useSearchParams(); // Hook para obtener parámetros de la URL
+  const [cantidad, setCantidad] = useState(1); // Number of trees to adopt
+  const [project, setProject] = useState<Project | null>(null); // Project state
+  const router = useRouter();
+  const searchParams = useSearchParams(); // Hook to get URL parameters
 
-  // Obtén el id del proyecto desde los parámetros de la URL
+  // Get the project ID from the URL parameters
   const id = searchParams.get("proyecto");
 
-  // Fetch para obtener el proyecto
+  // Fetch the project
   useEffect(() => {
     if (!id) {
       console.error("No se proporcionó un ID válido en la URL.");
@@ -35,7 +36,9 @@ function ApoyarCard() {
 
     const fetchProject = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_GATEWAY_URL}/projects/id/${id}`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_GATEWAY_URL}/projects/id/${id}`
+        );
         if (!response.ok) {
           throw new Error(`Error al obtener el proyecto: ${response.status}`);
         }
@@ -57,16 +60,12 @@ function ApoyarCard() {
     return <div>Cargando datos del proyecto...</div>;
   }
 
-
-  // Calcula el total basado en la cantidad y el precio por árbol
   const total = cantidad * project.price;
 
-  // Maneja el cambio en la cantidad de árboles
   const handleCantidadChange = (type: string) => {
     setCantidad((prev) => (type === "increment" ? prev + 1 : Math.max(1, prev - 1)));
   };
 
-  // Crea la preferencia llamando al backend
   const createPreference = async (userId: string) => {
     try {
       const response = await fetch(
@@ -96,13 +95,12 @@ function ApoyarCard() {
       }
 
       const data = await response.json();
-      return data; // Suponiendo que el backend devuelve una URL
+      return data;
     } catch (error) {
       console.error("Error al crear la preferencia:", error);
     }
   };
 
-  // Maneja la redirección y configuración de la preferencia
   const handleRedireccion = async () => {
     if (!session?.user?.id) {
       alert("No se pudo obtener el ID del usuario. Por favor, inicia sesión.");
@@ -111,13 +109,9 @@ function ApoyarCard() {
 
     const url = await createPreference(session.user.id);
     if (url) {
-      router.push(url.preferenceUrl); // Redirige a la URL obtenida del backend
+      router.push(url.preferenceUrl);
     }
   };
-
-  if (!session || status === "loading") {
-    return <div>Cargando...</div>;
-  }
 
   return (
     <div
@@ -139,7 +133,6 @@ function ApoyarCard() {
           <strong>Precio por árbol:</strong> ${project.price}
         </p>
 
-        {/* Selector de cantidad */}
         <div className="mb-6">
           <p className="mb-2">Seleccione cantidad de árboles a adoptar</p>
           <div className="flex items-center gap-4">
@@ -159,12 +152,10 @@ function ApoyarCard() {
           </div>
         </div>
 
-        {/* Muestra el total */}
         <p className="mb-6">
           <strong>Total:</strong> ${total}
         </p>
 
-        {/* Botón para ir a pagar */}
         <button
           className="w-full px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700"
           onClick={handleRedireccion}
@@ -176,4 +167,10 @@ function ApoyarCard() {
   );
 }
 
-export default ApoyarCard;
+export default function PagoPage() {
+  return (
+    <Suspense fallback={<div>Loading Pago Page...</div>}>
+      <ApoyarCard />
+    </Suspense>
+  );
+}
