@@ -2,7 +2,7 @@
 
 export default function RegisterButton() {
     const handleRegister = () => {
-      const keycloakRegistrationUrl = `${process.env.NEXT_PUBLIC_KEYCLOAK_URL}/realms/ibiradopta/protocol/openid-connect/registrations?client_id=ibiradopta-frontend&response_type=code&scope=openid&redirect_uri=${process.env.NEXT_PUBLIC_HOST}`;
+      const keycloakRegistrationUrl = `https://ibiradopta-keycloak-production.up.railway.app/realms/ibiradopta/protocol/openid-connect/registrations?client_id=ibiradopta-frontend&response_type=code&scope=openid&redirect_uri=https://ibiradopta.vercel.app`;
       console.log(+"/n url"+ keycloakRegistrationUrl)
       window.location.href = keycloakRegistrationUrl;
     };
