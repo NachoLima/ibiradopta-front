@@ -26,7 +26,7 @@ const Projects: React.FC = () => {
     const fetchProjects = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_GATEWAY_URL}projects/getall`
+          `${process.env.NEXT_PUBLIC_GATEWAY_URL}/projects/getall`
         );
         const data = await response.json();
 
