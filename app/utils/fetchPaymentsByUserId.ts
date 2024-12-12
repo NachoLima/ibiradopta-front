@@ -33,15 +33,10 @@ interface PaymentFilters {
     endDate?: string;
 }
 
-export async function fetchPayments(token: string, filters: PaymentFilters = {}): Promise<Payment[]> {
+export async function fetchPaymentsByUserId(token: string, userId:string): Promise<Payment[]> {
     const query = new URLSearchParams();
 
-    if (filters.projectId) query.append("projectId", filters.projectId.toString());
-    if (filters.userId) query.append("userId", filters.userId);
-    if (filters.startDate) query.append("startDate", filters.startDate);
-    if (filters.endDate) query.append("endDate", filters.endDate);
-
-    const url = `${process.env.NEXT_PUBLIC_GATEWAY_URL}/payments/filters?${query.toString()}`;
+    const url = `${process.env.NEXT_PUBLIC_GATEWAY_URL}/payments/userId/${userId}`;
 
     const response = await fetch(url, {
         method: 'GET',

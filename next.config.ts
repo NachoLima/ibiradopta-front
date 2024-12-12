@@ -6,11 +6,11 @@ const nextConfig: NextConfig = {
     // domains: ['7maravillas.uy','marcapaisuruguay.gub.uy'], // Puedes agregar otros dominios aquí si lo necesitas
     unoptimized: true, // Esto desactiva la optimización de imágenes
   },
-  eslint: {
-    ignoreDuringBuilds: true, // Disable ESLint checks during builds
+  eslint:{
+    ignoreDuringBuilds: true,
   },
-  typescript: {
-    ignoreBuildErrors: true, // Disable TypeScript checks during builds
+  typescript:{
+    ignoreBuildErrors: true,
   },
 };
 

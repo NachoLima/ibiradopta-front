@@ -9,17 +9,7 @@ const HeroSection = () => {
   };
 
     return (
-      <main
-  className="py-10 bg-cover bg-center bg-no-repeat font-Poppins"
-  style={{
-    backgroundImage: "url('/arbol_fondo.png')",
-    margin: "15px", // Adds margin around the image
-    borderRadius: "15px", // Smooth, rounded edges
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
-    backgroundColor: "white", // Ensures the border is white
-    border: "1px solid rgba(0, 0, 0, 0.1)", // Subtle border for definition
-  }}
->
+      <main className="py-10 bg-cover bg-center bg-no-repeat font-Poppins" style={{ backgroundImage: "url('/arbol_fondo.png')" }}>
         <div className="container mx-auto flex flex-col items-center lg:items-start space-y-8 py-20 lg:py-52 px-4 lg:px-24">
           <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold text-center lg:text-left">Plantá un árbol, transformá el futuro</h1>
           <p className="text-white text-xl sm:text-2xl lg:text-3xl text-center lg:text-left">
