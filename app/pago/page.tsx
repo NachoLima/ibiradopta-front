@@ -1,33 +1,34 @@
 "use client";
 
+import React, { useEffect, useState, Suspense } from "react";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-// Definimos la interfaz para los proyectos
+// Interface for project data
 interface Project {
   id: number;
   name: string;
   description: string;
   imageUrl: string;
   location: string;
-  endDate: string; // Fecha en formato string (ISO 8601: "yyyy-mm-dd")
-  isFinished: number; // 0 o 1
+  endDate: string;
+  isFinished: number;
   price: number;
-  images: { imageUrl: string; imageOrder: number }[]; // Lista de imágenes
+  images: { imageUrl: string; imageOrder: number }[];
 }
 
+// Component for fetching and rendering project data
 function ApoyarCard() {
   const { data: session, status } = useSession();
-  const [cantidad, setCantidad] = useState(1); // Cantidad de árboles a adoptar
-  const [project, setProject] = useState<Project | null>(null); // Estado para el proyecto
-  const router = useRouter(); // Inicializa useRouter
-  const searchParams = useSearchParams(); // Hook para obtener parámetros de la URL
+  const [cantidad, setCantidad] = useState(1); // Quantity of trees
+  const [project, setProject] = useState<Project | null>(null); // Project state
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  // Obtén el id del proyecto desde los parámetros de la URL
+  // Get the project ID from the URL parameters
   const id = searchParams.get("proyecto");
 
-  // Fetch para obtener el proyecto
+  // Fetch project data
   useEffect(() => {
     if (!id) {
       console.error("No se proporcionó un ID válido en la URL.");
@@ -58,16 +59,15 @@ function ApoyarCard() {
     return <div>Cargando datos del proyecto...</div>;
   }
 
-
-  // Calcula el total basado en la cantidad y el precio por árbol
+  // Calculate the total based on the quantity and price per tree
   const total = cantidad * project.price;
 
-  // Maneja el cambio en la cantidad de árboles
+  // Handle quantity change
   const handleCantidadChange = (type: string) => {
     setCantidad((prev) => (type === "increment" ? prev + 1 : Math.max(1, prev - 1)));
   };
 
-  // Crea la preferencia llamando al backend
+  // Create payment preference
   const createPreference = async (userId: string) => {
     try {
       const response = await fetch(
@@ -97,13 +97,13 @@ function ApoyarCard() {
       }
 
       const data = await response.json();
-      return data; // Suponiendo que el backend devuelve una URL
+      return data; // Assuming backend returns a URL
     } catch (error) {
       console.error("Error al crear la preferencia:", error);
     }
   };
 
-  // Maneja la redirección y configuración de la preferencia
+  // Handle redirection after creating payment preference
   const handleRedireccion = async () => {
     if (!session?.user?.id) {
       alert("No se pudo obtener el ID del usuario. Por favor, inicia sesión.");
@@ -112,17 +112,15 @@ function ApoyarCard() {
 
     const url = await createPreference(session.user.id);
     if (url) {
-      router.push(url.preferenceUrl); // Redirige a la URL obtenida del backend
+      router.push(url.preferenceUrl); // Redirect to the URL obtained from the backend
     }
   };
 
-  if (!session || status === "loading") {
-    return <div>Cargando...</div>;
-  }
-
-  // Lógica para mostrar la imagen
-  const selectedImage = project.images.find(img => img.imageOrder === 1)?.imageUrl || project.images[0]?.imageUrl || '/default-image.jpg';
-
+  // Get the main image for the project
+  const selectedImage =
+    project.images.find((img) => img.imageOrder === 1)?.imageUrl ||
+    project.images[0]?.imageUrl ||
+    "/default-image.jpg";
 
   return (
     <div
@@ -144,7 +142,7 @@ function ApoyarCard() {
           <strong>Precio por árbol:</strong> ${project.price}
         </p>
 
-        {/* Selector de cantidad */}
+        {/* Quantity Selector */}
         <div className="mb-6">
           <p className="mb-2">Seleccione cantidad de árboles a adoptar</p>
           <div className="flex items-center gap-4">
@@ -164,19 +162,20 @@ function ApoyarCard() {
           </div>
         </div>
 
-        {/* Muestra el total */}
+        {/* Total Display */}
         <p className="mb-6">
           <strong>Total:</strong> ${total}
         </p>
 
-        {/* Botón para ir a pagar */}
+        {/* Payment Button */}
         <button
           className="w-full px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700"
           onClick={handleRedireccion}
         >
           Ir a Pagar
         </button>
-        {/* Botón Volver */}
+
+        {/* Back Button */}
         <button
           className="w-full px-6 py-3 bg-gray-600 text-white rounded-full mt-4 hover:bg-gray-700"
           onClick={() => router.back()}
@@ -188,4 +187,11 @@ function ApoyarCard() {
   );
 }
 
-export default ApoyarCard;
+// Suspense wrapper for the page
+export default function PagoPage() {
+  return (
+    <Suspense fallback={<div>Cargando...</div>}>
+      <ApoyarCard />
+    </Suspense>
+  );
+}
