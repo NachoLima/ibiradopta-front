@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Definimos la interfaz para los proyectos
 interface Project {
@@ -22,18 +22,15 @@ function ApoyarCard() {
   const [cantidad, setCantidad] = useState(1);
   const [project, setProject] = useState<Project | null>(null);
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  // Check if we are in a browser environment
-  const [isClient, setIsClient] = useState(false);
+  // Use `useState` for safe query param handling
+  const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Ensure the code runs only on the client
-    setIsClient(true);
+    // Fetch query parameters safely in the client
+    const searchParams = new URLSearchParams(window.location.search);
+    setId(searchParams.get("proyecto"));
   }, []);
-
-  // Fetch query parameter safely
-  const id = isClient ? searchParams.get("proyecto") : null;
 
   // Fetch the project
   useEffect(() => {
